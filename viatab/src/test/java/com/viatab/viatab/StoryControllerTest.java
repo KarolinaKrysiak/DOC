@@ -1,4 +1,4 @@
-package com.viatab.viatab.controller;
+package com.viatab.viatab;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.viatab.viatab.model.Story;
