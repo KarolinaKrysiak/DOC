@@ -19,6 +19,15 @@ jobs:
            run: |
               cd viatab
               mvn clean install
+         - name: Generate JaCoCo coverage report
+           run: |
+              cd viatab
+              mvn jacoco:report
+         - name: Upload coverage report
+           uses: actions/upload-artifact@v4
+           with:
+              name: jacoco-report
+              path: viatab/target/site/jacoco/
 
    frontend:
       runs-on: ubuntu-latest
