@@ -31,7 +31,7 @@ jobs:
               cache: "npm"
          - name: Show directory contents
            run: ls -la
-          - name: Install dependencies
+         - name: Install dependencies
            run: |
               cd viatab-frontend
               npm install
