@@ -1,0 +1,41 @@
+version: "3.9"
+services:
+   db:
+      image: "postgres:16"
+      container_name: "viatab-db"
+      ports:
+         - "5432:5432"
+      environment:
+         - POSTGRES_DB=viatab
+         - POSTGRES_USER=postgres
+         - POSTGRES_PASSWORD=Password1
+      volumes:
+         - pgdata:/var/lib/postgresql/data
+
+   viatab:
+      build:
+         context: ./viatab
+      image: viatab:latest
+      container_name: viatab
+      ports:
+         - "8080:8080"
+      depends_on:
+         - db
+      environment:
+         - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/viatab
+         - SPRING_DATASOURCE_USERNAME=postgres
+         - SPRING_DATASOURCE_PASSWORD=Password1
+         - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+   frontend:
+      build:
+         context: ./viatab-frontend
+      image: viatab-frontend:latest
+      container_name: viatab-frontend
+      ports:
+         - "3000:3000"
+      depends_on:
+         - viatab
+
+volumes:
+   pgdata:

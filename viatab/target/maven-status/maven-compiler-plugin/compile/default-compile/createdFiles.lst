@@ -1,0 +1,4 @@
+com\viatab\viatab\ViatabApplication.class
+com\viatab\viatab\model\Story.class
+com\viatab\viatab\controller\StoryController.class
+com\viatab\viatab\repository\StoryRepository.class
