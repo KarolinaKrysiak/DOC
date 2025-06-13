@@ -31,10 +31,14 @@ jobs:
               cache: "npm"
          - name: Show directory contents
            run: ls -la
-         - name: Install dependencies
+          - name: Install dependencies
            run: |
               cd viatab-frontend
               npm install
+         - name: Fix react-scripts permissions
+           run: |
+              cd viatab-frontend
+              chmod +x node_modules/.bin/react-scripts
          - name: Run frontend tests
            run: |
               cd viatab-frontend
