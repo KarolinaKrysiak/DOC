@@ -1,0 +1,25 @@
+name: CD
+
+on:
+   push:
+      branches: [main, master]
+
+jobs:
+   deploy:
+      runs-on: self-hosted # This means YOUR PC, not GitHub's cloud
+      steps:
+         - uses: actions/checkout@v4
+
+         - name: Set up Docker for Minikube
+           run: |
+              eval $(minikube docker-env)
+
+         - name: Build Docker images
+           run: |
+              docker build -t viatab:latest viatab
+              docker build -t viatab-frontend:latest viatab-frontend
+
+         - name: Apply Kubernetes manifests
+           run: |
+              kubectl apply -f viatab-deployment.yaml
+              kubectl apply -f frontend-deployment.yaml
