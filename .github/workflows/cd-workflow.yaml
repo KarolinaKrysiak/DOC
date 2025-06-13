@@ -6,7 +6,7 @@ on:
 
 jobs:
    deploy:
-      runs-on: self-hosted # This means YOUR PC, not GitHub's cloud
+      runs-on: self-hosted
       steps:
          - uses: actions/checkout@v4
 
